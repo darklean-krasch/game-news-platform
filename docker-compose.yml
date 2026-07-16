@@ -1,0 +1,31 @@
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: game_news_postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_USER: game_news
+      POSTGRES_PASSWORD: game_news_password
+      POSTGRES_DB: game_news
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+  redis:
+    image: redis:7
+    container_name: game_news_redis
+    restart: unless-stopped
+
+    ports:
+      - "6379:6379"
+
+
+volumes:
+
+  postgres_data:
